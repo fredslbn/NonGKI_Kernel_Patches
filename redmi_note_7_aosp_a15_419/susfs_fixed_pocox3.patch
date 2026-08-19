@@ -4,17 +4,17 @@ index 1ff4623..e727c74 100644
 +++ b/fs/namei.c
 @@ -3656,24 +3837,57 @@ out2:
 	mnt_drop_write(path.mnt);
-out:
+ out:
 	path_put(&path);
 +#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 +	if (fake_filename && !IS_ERR(fake_filename))
 +		putname(fake_filename);
 +#endif // #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT	
 	return error;
-}
+ }
 
-static int do_o_path(struct nameidata *nd, unsigned flags, struct file *file)
-{
+ static int do_o_path(struct nameidata *nd, unsigned flags, struct file *file)
+ {
 +#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 +	int old_dfd = nd->dfd;
 +	struct filename *fake_filename = NULL;
@@ -48,11 +48,11 @@ static int do_o_path(struct nameidata *nd, unsigned flags, struct file *file)
 +		putname(fake_filename);
 +#endif // #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT	
 	return error;
-}
+ }
 
-static struct file *path_openat(struct nameidata *nd,
+ static struct file *path_openat(struct nameidata *nd,
 			const struct open_flags *op, unsigned flags)
-{
+ {
 +#ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
 +	int old_dfd = nd->dfd;
 +	struct filename *fake_filename = NULL;
