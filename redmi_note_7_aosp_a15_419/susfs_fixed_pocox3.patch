@@ -57,9 +57,9 @@ index 1ff4623..e727c74 100644
 +	int old_dfd = nd->dfd;
 +	struct filename *fake_filename = NULL;
 +#endif // #ifdef CONFIG_KSU_SUSFS_OPEN_REDIRECT
- 	const char *s;
- 	struct file *file;
- 	int opened = 0;
+ const char *s;
+ struct file *file;
+ int opened = 0;
 diff --git a/kernel/sys.c b/kernel/sys.c
 index b276a5e..898dbf1 100644
 --- a/kernel/sys.c
