@@ -2,7 +2,7 @@ diff --git a/fs/namei.c b/fs/namei.c
 index 1ff4623..e727c74 100644
 --- a/fs/namei.c
 +++ b/fs/namei.c
-@@ -3655,24 +3816,57 @@ out2:
+@@ -3656,24 +3837,57 @@ out2:
  	mnt_drop_write(path.mnt);
  out:
  	path_put(&path);
