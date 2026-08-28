@@ -36,7 +36,7 @@ index b276a5e..898dbf1 100644
  {
     struct new_utsname tmp;
     struct task_struct *t;
-    bool is_netmgrd = false;
+	bool is_netmgrd = false;
 
 	down_read(&uts_sem);
 	memcpy(&tmp, utsname(), sizeof(tmp));
